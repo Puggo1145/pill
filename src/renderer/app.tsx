@@ -1,3 +1,5 @@
+import { Button } from "./components/ui/button";
+
 const App: React.FC = () => {
     const onClick = async () => {
         const msg = await window.api.ping();
@@ -7,7 +9,7 @@ const App: React.FC = () => {
     return (
         <div>
             <h1 className="font-black">Hello From Pill</h1>
-            <button onClick={onClick}>click me</button>
+            <Button onClick={onClick}>click me</Button>
         </div>
     )
 }
