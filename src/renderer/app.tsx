@@ -6,7 +6,7 @@ const App: React.FC = () => {
 
     return (
         <div>
-            <h1>Hello From Pill</h1>
+            <h1 className="font-black">Hello From Pill</h1>
             <button onClick={onClick}>click me</button>
         </div>
     )
