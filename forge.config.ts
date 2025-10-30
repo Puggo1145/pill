@@ -33,7 +33,7 @@ const config: ForgeConfig = {
         entryPoints: [
           {
             html: path.resolve(__dirname, './src/renderer/index.html'),
-            js: path.resolve(__dirname, './src/renderer/main.tsx'),
+            js: path.resolve(__dirname, './src/renderer/windows/main/main.tsx'),
             name: 'main_window',
             preload: {
               js: path.resolve(__dirname, './src/preload/index.ts'),

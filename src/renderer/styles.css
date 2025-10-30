@@ -120,7 +120,7 @@
   }
   body {
     @apply text-foreground;
-    background-color: transparent;
+    background-color: gray;
   }
   .dragable {
     app-region: drag;
