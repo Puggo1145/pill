@@ -28,4 +28,23 @@ export const rules: Required<ModuleOptions>['rules'] = [
       },
     },
   },
+  {
+    test: /\.svg$/i,
+    oneOf: [
+      {
+        issuer: /\.[jt]sx?$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgo: true,
+            },
+          },
+        ],
+      },
+      {
+        type: 'asset/resource',
+      },
+    ],
+  },
 ];

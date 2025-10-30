@@ -14,8 +14,13 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    height: 96,
+    width: 240,
+    transparent: true,
+    resizable: false,
+    alwaysOnTop: true,
+    roundedCorners: true,
+    frame: false,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       contextIsolation: true,
@@ -25,12 +30,14 @@ const createWindow = (): void => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools({ mode: "detach" });
 };
 
-registerIpcHandlers();
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  registerIpcHandlers();
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -45,4 +52,3 @@ app.on('activate', () => {
     createWindow();
   }
 });
-

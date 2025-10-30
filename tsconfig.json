@@ -14,6 +14,7 @@
     "paths": {
       "*": ["node_modules/*"],
       "@/*": ["src/renderer/*"],
+      "@assets/*": ["assets/*"]
     },
     "jsx": "react-jsx"
   },

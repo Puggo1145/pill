@@ -1,16 +1,11 @@
-import { Button } from "./components/ui/button";
+import { MainBar } from "@/windows/main-bar/main-bar";
+import { ThemeProvider } from "./components/shared/theme-provider";
 
 const App: React.FC = () => {
-    const onClick = async () => {
-        const msg = await window.api.ping();
-        console.log(msg);
-    }
-
     return (
-        <div>
-            <h1 className="font-black">Hello From Pill</h1>
-            <Button onClick={onClick}>click me</Button>
-        </div>
+        <ThemeProvider defaultTheme="dark">
+            <MainBar />
+        </ThemeProvider>
     )
 }
 
