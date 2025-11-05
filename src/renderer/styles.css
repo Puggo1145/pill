@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url("@/styles/animations.css");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,7 +119,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    /* background: rgba(0, 0, 0, 0.00); */
+    background: rgba(0, 0, 0, 0.5);
     /* background: transparent; */
   }
   .dragable {

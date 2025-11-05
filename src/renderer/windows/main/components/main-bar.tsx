@@ -8,6 +8,10 @@ import { useRecordingStore } from "../stores/use-recording-store";
 export const MainBar: React.FC = () => {
     const { isRecording, startRecording, endRecoding } = useRecordingStore();
 
+    const mouseTestMove = () => {
+        window.api.mouse.testMove()
+    }
+
     return (
         <GlassBox className={cn("dragable w-full h-12 px-2 pt-[7px] flex justify-between rounded-3xl")}>
             <Button
@@ -23,7 +27,11 @@ export const MainBar: React.FC = () => {
                         : <AudioLinesIcon />
                 }
             </Button>
-            <Button variant="ghost" className="clickable rounded-full size-8">
+            <Button 
+                variant="ghost" 
+                className="clickable rounded-full size-8"
+                onClick={mouseTestMove}
+            >
                 <Logo />
             </Button>
         </GlassBox>

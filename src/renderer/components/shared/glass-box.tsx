@@ -7,6 +7,7 @@ export const GlassBox = ({ className, children }: ComponentProps<'div'>) => {
             "bg-gray-400/50",
             "border border-white/20",
             "shadow-[inset_1px_0_2px_rgba(255,255,255,0.3)]",
+            "pointer-events-auto",
             className
         )}>
             {children}

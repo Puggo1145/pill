@@ -7,13 +7,13 @@ export const AudioPicker: React.FC = () => {
 
     return (
         <GlassBox className={cn(
-            "w-full overflow-hidden rounded-xl",
+            "w-full overflow-hidden rounded-xl p-4",
             "flex items-center justify-center",
             "origin-top transition-all duration-300 ease-in-out",
-            "absolute ",
+            "absolute",
             isRecording
-                ? "top-14 h-20 p-4 scale-100 pointer-events-auto"
-                : "top-10 h-0 px-4 scale-0 border-none pointer-events-none"
+                ? "top-14 h-20 scale-100"
+                : "top-10 h-0 px-4 scale-0 border-none"
         )}>
             <span className="text-white">
                 Tell me what you are thinking? I'm Listening!

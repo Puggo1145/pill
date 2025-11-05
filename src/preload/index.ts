@@ -3,5 +3,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld('api', {
-    ping: () => ipcRenderer.invoke('ping'),
-})
+    mouse: {
+        testMove: () => ipcRenderer.send('mouse::test-move'),
+    },
+});
