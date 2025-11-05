@@ -9,10 +9,7 @@ export const MainBar: React.FC = () => {
     const { isRecording, startRecording, endRecoding } = useRecordingStore();
 
     return (
-        <GlassBox className={cn(
-            "dragable w-full h-12 px-2 pt-[7px] flex justify-between rounded-3xl",
-            isRecording && "expand-audio-picker"
-        )}>
+        <GlassBox className={cn("dragable w-full h-12 px-2 pt-[7px] flex justify-between rounded-3xl")}>
             <Button
                 className={cn(
                     "clickable rounded-full w-12 h-8",

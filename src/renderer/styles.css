@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url("@/styles/animations.css");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -127,17 +128,5 @@
   }
   .clickable {
     app-region: no-drag;
-  }
-  .expand-audio-picker {
-    animation: expand-audio-picker-anime 700ms;
-  }
-}
-
-@keyframes expand-audio-picker-anime {
-  0%, 100% {
-    height: 3rem;
-  }
-  50% {
-    height: 8.5rem;
   }
 }
