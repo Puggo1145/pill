@@ -4,6 +4,7 @@ import { contextBridge, ipcRenderer } from "electron";
 
 contextBridge.exposeInMainWorld('api', {
     mouse: {
+        runAgent: () => ipcRenderer.send("run-agent"),
         testMove: () => ipcRenderer.send('mouse::test-move'),
     },
 });

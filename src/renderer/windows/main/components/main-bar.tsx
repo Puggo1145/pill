@@ -8,8 +8,8 @@ import { useRecordingStore } from "../stores/use-recording-store";
 export const MainBar: React.FC = () => {
     const { isRecording, startRecording, endRecoding } = useRecordingStore();
 
-    const mouseTestMove = () => {
-        window.api.mouse.testMove()
+    const runAgent = () => {
+        window.api.mouse.runAgent()
     }
 
     return (
@@ -30,7 +30,7 @@ export const MainBar: React.FC = () => {
             <Button 
                 variant="ghost" 
                 className="clickable rounded-full size-8"
-                onClick={mouseTestMove}
+                onClick={runAgent}
             >
                 <Logo />
             </Button>

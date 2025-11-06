@@ -1,7 +1,5 @@
 import { mouse, straightTo } from "@nut-tree-fork/nut-js"
-import type { Point } from "@nut-tree-fork/nut-js"
 import { ipcMain } from "electron"
-
 
 const registerDesktopMouseEvent = () => {
     ipcMain.on("mouse::test-move", async () => {
