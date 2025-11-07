@@ -1,0 +1,47 @@
+import {
+    setMousePosition,
+    getMousePosition,
+    leftClick,
+    rightClick,
+    scrollUp,
+    scrollDown,
+    scrollLeft,
+    scrollRight,
+    dragTo,
+    pressButton,
+    releaseButton,
+    clickButton,
+    doubleClickButton,
+} from "./tools";
+
+export const mouseTools = [
+    setMousePosition,
+    getMousePosition,
+    leftClick,
+    rightClick,
+    scrollUp,
+    scrollDown,
+    scrollLeft,
+    scrollRight,
+    dragTo,
+    pressButton,
+    releaseButton,
+    clickButton,
+    doubleClickButton,
+];
+
+export {
+    setMousePosition,
+    getMousePosition,
+    leftClick,
+    rightClick,
+    scrollUp,
+    scrollDown,
+    scrollLeft,
+    scrollRight,
+    dragTo,
+    pressButton,
+    releaseButton,
+    clickButton,
+    doubleClickButton,
+}
