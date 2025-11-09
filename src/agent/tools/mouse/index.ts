@@ -15,19 +15,19 @@ import {
 } from "./tools";
 
 export const mouseTools = [
-    setMousePosition,
-    getMousePosition,
     leftClick,
-    rightClick,
+    setMousePosition,
+    // getMousePosition,
+    // rightClick,
     scrollUp,
     scrollDown,
-    scrollLeft,
-    scrollRight,
+    // scrollLeft,
+    // scrollRight,
     dragTo,
-    pressButton,
-    releaseButton,
-    clickButton,
-    doubleClickButton,
+    // pressButton,
+    // releaseButton,
+    // clickButton,
+    // doubleClickButton,
 ];
 
 export {

@@ -3,13 +3,13 @@ import {
     type Key,
 } from "@nut-tree-fork/nut-js";
 import { tool } from "langchain";
-import { keyEnumDescription } from "../../constant/keys";
+import { keyEnumDescription } from "@agent/constants/keys";
 import { z } from "zod";
 
 export const typeText = tool(
-    async (text: string) => {
+    async (param: { text: string }) => {
         try {
-            await keyboard.type(text);
+            await keyboard.type(param.text);
             return "success"
         } catch (err) {
             return "failed"
@@ -28,7 +28,7 @@ export const getKeyboard = tool(
     () => keyEnumDescription,
     {
         name: "get_keyboard",
-        description: "get all the keys you can use on the keyboard. call this tool when you need to use keyboard tools",
+        description: "get all the keys you can use on the keyboard.",
     }
 )
 

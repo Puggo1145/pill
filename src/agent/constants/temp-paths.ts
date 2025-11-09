@@ -1,0 +1,1 @@
+export const MAC_OS_SCREENSHOT_PATH = "/tmp/pill_screenshot.jpg";

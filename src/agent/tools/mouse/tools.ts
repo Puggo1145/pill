@@ -5,19 +5,17 @@ import {
     Point,
     Button,
 } from '@nut-tree-fork/nut-js';
+import { scaleToScreenPoint } from "@agent/lib/screen";
 
 export const setMousePosition = tool(
-    async (position: Point) => {
-        try {
-            await mouse.setPosition(position);
-            return "success"
-        } catch (err) {
-            return "set mouse position failed"
-        }
+    async (point: Point, config: Record<string, any>) => {
+        const modelNormalizedScale = config.context.modelNormalizedScale as number;
+        const scaledPoint = await scaleToScreenPoint(point, modelNormalizedScale);
+        return await mouse.setPosition(scaledPoint);
     },
     {
         name: "set_mouse_position",
-        description: "directly move mouse to a given position",
+        description: "move mouse to a given Point",
         schema: z.object({
             x: z.number().describe("the x position of the mouse destination"),
             y: z.number().describe("the y position of the mouse destination"),
@@ -27,140 +25,121 @@ export const setMousePosition = tool(
 
 export const getMousePosition = tool(
     async () => {
-        try {
-            const position = await mouse.getPosition();
-            return `x: ${position.x}, y: ${position.y}`
-        } catch (err) {
-            return "cannot get mouse position";
-        }
+        const position = await mouse.getPosition();
+        return `x: ${position.x}, y: ${position.y}`
     },
     {
         name: "get_mouse_position",
-        description: "get the current mouse position",
+        description: "get the current mouse Point",
+        schema: z.object({}),
     }
 )
 
 export const leftClick = tool(
     async () => {
-        try {
-            await mouse.leftClick();
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+        await mouse.leftClick();
+        return "success"
     },
     {
         name: "left_click",
         description: "click the left mouse button",
+        schema: z.object({}),
     }
 )
 
 export const rightClick = tool(
     async () => {
-        try {
-            await mouse.rightClick();
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+        await mouse.rightClick();
+        return "success"
     },
     {
         name: "right_click",
         description: "click the right mouse button",
+        schema: z.object({}),
     }
 )
 
 export const scrollUp = tool(
-    async (amount: number) => {
-        try {
-            await mouse.scrollUp(amount);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+    async (param: { amount: number }) => {
+        await mouse.scrollUp(param.amount);
+        return "success"
     },
     {
         name: "scroll_up",
         description: "scroll up the mouse wheel by a given amount",
-        schema: z.number().describe("the amount to scroll up"),
+        schema: z.object({
+            amount: z.number().describe("the amount to scroll up"),
+        }),
     }
 )
 
 export const scrollDown = tool(
-    async (amount: number) => {
-        try {
-            await mouse.scrollDown(amount);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+    async (param: { amount: number }) => {
+        await mouse.scrollDown(param.amount);
+        return "success"
     },
     {
         name: "scroll_down",
         description: "scroll down the mouse wheel by a given amount",
-        schema: z.number().describe("the amount to scroll down"),
+        schema: z.object({
+            amount: z.number().describe("the amount to scroll down"),
+        }),
     }
 )
 
 export const scrollLeft = tool(
-    async (amount: number) => {
-        try {
-            await mouse.scrollLeft(amount);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+    async (param: { amount: number }) => {
+        await mouse.scrollLeft(param.amount);
+        return "success"
     },
     {
         name: "scroll_left",
         description: "scroll left the mouse wheel by a given amount",
-        schema: z.number().describe("the amount to scroll left"),
+        schema: z.object({
+            amount: z.number().describe("the amount to scroll left"),
+        }),
     }
 )
 
 export const scrollRight = tool(
-    async (amount: number) => {
-        try {
-            await mouse.scrollRight(amount);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+    async (param: { amount: number }) => {
+        await mouse.scrollRight(param.amount);
+        return "success"
     },
     {
         name: "scroll_right",
         description: "scroll right the mouse wheel by a given amount",
-        schema: z.number().describe("the amount to scroll right"),
+        schema: z.object({
+            amount: z.number().describe("the amount to scroll right"),
+        }),
     }
 )
 
 export const dragTo = tool(
-    async (positions: Point[]) => {
-        try {
-            await mouse.drag(positions);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+    async (param: { points: Point[] }, config: Record<string, any>) => {
+        const modelNormalizedScale = config.context.modelNormalizedScale as number;
+        const scaledPositions = await Promise.all(param.points.map(async (pos) => {
+            return await scaleToScreenPoint(pos, modelNormalizedScale);
+        }));
+        await mouse.drag(scaledPositions);
+        return "success"
     },
     {
         name: "drag_to",
         description: "drag the mouse to a given position",
         schema: z.object({
-            x: z.number().describe("the x position of the mouse destination"),
-            y: z.number().describe("the y position of the mouse destination"),
+            points: z.array(z.object({
+                x: z.number().describe("the x position of the mouse destination"),
+                y: z.number().describe("the y position of the mouse destination"),
+            })),
         }),
     }
 )
 
 export const pressButton = tool(
     async (button: Button) => {
-        try {
-            await mouse.pressButton(button);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+        await mouse.pressButton(button);
+        return "success"
     },
     {
         name: "press_button",
@@ -172,12 +151,8 @@ export const pressButton = tool(
 
 export const releaseButton = tool(
     async (button: Button) => {
-        try {
-            await mouse.releaseButton(button);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+        await mouse.releaseButton(button);
+        return "success"
     },
     {
         name: "release_button",
@@ -189,12 +164,8 @@ export const releaseButton = tool(
 
 export const clickButton = tool(
     async (button: Button) => {
-        try {
-            await mouse.click(button);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+        await mouse.click(button);
+        return "success"
     },
     {
         name: "click_button",
@@ -206,12 +177,8 @@ export const clickButton = tool(
 
 export const doubleClickButton = tool(
     async (button: Button) => {
-        try {
-            await mouse.doubleClick(button);
-            return "success"
-        } catch (err) {
-            return `failed`
-        }
+        await mouse.doubleClick(button);
+        return "success"
     },
     {
         name: "double_click_button",
